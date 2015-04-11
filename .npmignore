@@ -1,0 +1,12 @@
+lib/
+coverage/
+test/
+tmp/
+.gitignore
+.editorconfig
+.eslintrc
+.travis.yml
+.babelrc
+*.sublime-*
+*.log
+.DS_Store
