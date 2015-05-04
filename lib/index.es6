@@ -52,7 +52,7 @@ export default babel => {
                                         })
                                     )
                                 ]
-                            )
+                            );
                         }
                     });
                 }
@@ -61,4 +61,4 @@ export default babel => {
             return importNodes;
         }
     });
-}
+};
