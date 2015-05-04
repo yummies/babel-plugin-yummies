@@ -1,23 +1,12 @@
 {
   "name": "babel-plugin-yummies",
-  "version": "0.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "Multilayer components inheritance for Yummies as Babel plugin",
   "homepage": "https://github.com/yummies/babel-plugin-yummies",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/yummies/babel-plugin-yummies.git"
-  },
+  "repository": "yummies/babel-plugin-yummies",
   "contributors": [
-    {
-      "name": "Kir Belevich",
-      "email": "kir@soulshine.in",
-      "url": "https://github.com/deepsweet"
-    },
-    {
-      "name": "Denis Koltsov",
-      "email": "iam@mistadikay.com",
-      "url": "https://github.com/mistadikay"
-    }
+    "Kir Belevich <kir@soulshine.in> (https://github.com/deepsweet)",
+    "Denis Koltsov <iam@mistadikay.com> (https://github.com/mistadikay)"
   ],
   "main": "build/index.js",
   "dependencies": {
@@ -26,7 +15,6 @@
     "loader-utils": "0.2.x",
     "js-yaml": "3.3.x"
   },
-  "devDependencies": {},
   "scripts": {
       "build": "rm -rf build/ && babel lib/ -d build/",
       "dev": "npm run build -- -w"
