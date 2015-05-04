@@ -20,10 +20,11 @@
     }
   ],
   "main": "build/index.js",
-  "peerDependencies": {
-    "babel-runtime": "5.x.x",
-    "babel": "5.x.x",
-    "babel-core": "5.x.x"
+  "dependencies": {
+    "babel-runtime": "5.2.x",
+    "babel-core": "5.2.x",
+    "loader-utils": "0.2.x",
+    "js-yaml": "3.3.x"
   },
   "devDependencies": {},
   "scripts": {
