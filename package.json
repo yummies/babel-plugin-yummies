@@ -26,13 +26,15 @@
     "js-yaml": "3.3.x"
   },
   "scripts": {
-      "build": "rm -rf build/ && babel lib/ -d build/",
-      "dev": "npm run build -- -w",
-      "lint": "eslint --ext .es6 lib/",
-      "test": "npm run lint",
-      "travis": "npm run test",
-      "prepush": "npm run test",
-      "prepublish": "npm run build"
+    "build": "rm -rf build/ && babel lib/ -d build/",
+    "dev": "npm run build -- -w",
+
+    "lint": "eslint --ext .es6 lib/",
+    "test": "npm run lint",
+    "travis": "npm run test",
+
+    "prepush": "npm run test",
+    "prepublish": "npm run build"
   },
   "engines": {
     "node": ">=0.10.0"
