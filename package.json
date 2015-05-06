@@ -14,16 +14,17 @@
     "build/",
     "LICENSE"
   ],
-  "devDependencies": {
-    "babel": "5.2.x",
-    "eslint": "0.20.x",
-    "babel-eslint": "3.0.x"
-  },
   "dependencies": {
     "babel-runtime": "5.2.x",
-    "babel-core": "5.2.x",
     "loader-utils": "0.2.x",
     "js-yaml": "3.3.x"
+  },
+  "devDependencies": {
+    "husky": "0.7.x",
+    "babel": "5.2.x",
+    "babel-core": "5.2.x",
+    "eslint": "0.20.x",
+    "babel-eslint": "3.0.x"
   },
   "scripts": {
     "build": "rm -rf build/ && babel lib/ -d build/",
