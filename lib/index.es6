@@ -3,7 +3,7 @@ import transformers from 'babel-core/lib/babel/transformation/transformers';
 import config from './config';
 import ProcessRequire from './processRequire';
 
-const OrigImportDeclaration = transformers['es6.modules'].ImportDeclaration;
+const OrigImportDeclaration = transformers['es6.modules'].visitor.ImportDeclaration;
 
 export default babel => {
     const t = babel.types;
