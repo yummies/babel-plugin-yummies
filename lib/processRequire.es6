@@ -26,7 +26,7 @@ export default class {
         const [ rawComponent, rawOpts ] = requiredString.split('?');
         const component = rawComponent.substr(this.config.prefix.length);
         const opts = {};
-        const mods = {};
+        let mods = {};
 
         if (rawOpts) {
             const parsedOpts = loaderUtils.parseQuery('?' + rawOpts);
