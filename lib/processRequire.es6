@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import loaderUtils from 'loader-utils';
 
-let cache = {};
+const cache = {};
 
 export default class {
     constructor(filename, config) {
@@ -23,16 +23,16 @@ export default class {
     }
 
     parseRequiredString(requiredString) {
-        let [ rawComponent, rawOpts ] = requiredString.split('?');
-        let component = rawComponent.substr(this.config.prefix.length);
-        let opts = {};
-        let mods = {};
+        const [ rawComponent, rawOpts ] = requiredString.split('?');
+        const component = rawComponent.substr(this.config.prefix.length);
+        const opts = {};
+        const mods = {};
 
         if (rawOpts) {
-            rawOpts = loaderUtils.parseQuery('?' + rawOpts);
+            const parsedOpts = loaderUtils.parseQuery('?' + rawOpts);
 
-            Object.keys(rawOpts).forEach(optName => {
-                const optVal = rawOpts[optName];
+            Object.keys(parsedOpts).forEach(optName => {
+                const optVal = parsedOpts[optName];
 
                 // mods
                 if (optName.charAt(0) === '_') {
@@ -55,7 +55,7 @@ export default class {
     }
 
     collectPaths(required) {
-        let out = [];
+        const out = [];
 
         this.remainingLayers.forEach(layer => {
             const pathToCheck = path.join(layer, required);
@@ -106,7 +106,7 @@ export default class {
 
         this.required = this.parseRequiredString(requiredString);
 
-        let pathsToCheck = [];
+        const pathsToCheck = [];
 
         // collect paths to check
         pathsToCheck.push(...this.collectPaths(this.required.component));
