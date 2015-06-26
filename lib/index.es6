@@ -1,16 +1,13 @@
-import transformers from 'babel-core/lib/babel/transformation/transformers';
-
 import config from './config';
 import ProcessRequire from './processRequire';
-
-const OrigImportDeclaration = transformers['es6.modules'].visitor.ImportDeclaration;
+import ImportDeclaration from './ImportDeclaration';
 
 export default babel => {
     const t = babel.types;
 
     return new babel.Transformer('yummies', {
         ImportDeclaration(node, parent, scope, file) {
-            const importNodes = OrigImportDeclaration(node, parent, scope, file);
+            const importNodes = ImportDeclaration(node, parent, scope, file);
 
             importNodes.forEach(importNode => {
                 if (importNode.declarations) {
