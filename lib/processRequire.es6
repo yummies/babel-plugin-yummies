@@ -115,7 +115,13 @@ export default class {
         if (this.required.mods) {
             Object.keys(this.required.mods).forEach(modName => {
                 const modVal = this.required.mods[modName];
-                const pathToCheck = path.join(this.required.component, modName, modVal);
+                let pathToCheck;
+
+                if (modVal === true) {
+                    pathToCheck = path.join(this.required.component, modName);
+                } else {
+                    pathToCheck = path.join(this.required.component, modName, modVal);
+                }
 
                 pathsToCheck.push(...this.collectPaths(pathToCheck));
             });
