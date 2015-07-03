@@ -56,9 +56,10 @@ export default class {
 
     collectPaths(required) {
         const out = [];
+        const layers = required.opts.raw ? this.remainingLayers : this.config.layers;
 
-        this.remainingLayers.forEach(layer => {
-            const pathToCheck = path.join(layer, required);
+        layers.forEach(layer => {
+            const pathToCheck = path.join(layer, required.component);
 
             // self-require guard
             if (pathToCheck === this.sourcePath) {
@@ -74,7 +75,7 @@ export default class {
             }
 
             // styles
-            if (this.required.opts.styles !== false && this.config.files.styles) {
+            if (required.opts.styles !== false && this.config.files.styles) {
                 out.push({
                     type: 'styles',
                     path: path.join(pathToCheck, this.config.files.styles)
@@ -82,7 +83,7 @@ export default class {
             }
 
             // propTypes
-            if (this.required.opts.propTypes !== false && this.config.files.propTypes) {
+            if (required.opts.propTypes !== false && this.config.files.propTypes) {
                 out.push({
                     type: 'propTypes',
                     path: path.join(pathToCheck, this.config.files.propTypes)
@@ -104,31 +105,30 @@ export default class {
             return cache[uniqueKey];
         }
 
-        this.required = this.parseRequiredString(requiredString);
+        const required = this.parseRequiredString(requiredString);
 
         const pathsToCheck = [];
 
         // collect paths to check
-        pathsToCheck.push(...this.collectPaths(this.required.component));
+        pathsToCheck.push(...this.collectPaths(required));
 
         // also collect main component paths if modifier was required
-        if (this.required.mods) {
-            Object.keys(this.required.mods).forEach(modName => {
-                const modVal = this.required.mods[modName];
-                let pathToCheck;
+        if (required.mods) {
+            Object.keys(required.mods).forEach(modName => {
+                const modVal = required.mods[modName];
+                const component = modVal === true ?
+                                  path.join(required.component, modName) :
+                                  path.join(required.component, modName, modVal);
 
-                if (modVal === true) {
-                    pathToCheck = path.join(this.required.component, modName);
-                } else {
-                    pathToCheck = path.join(this.required.component, modName, modVal);
-                }
-
-                pathsToCheck.push(...this.collectPaths(pathToCheck));
+                pathsToCheck.push(...this.collectPaths({
+                    ...required,
+                    component
+                }));
             });
         }
 
         const out = {
-            method: this.required.opts.raw ? 'yummifyRaw' : 'yummify',
+            method: required.opts.raw ? 'yummifyRaw' : 'yummify',
             items: this.filterPaths(pathsToCheck)
         };
 
