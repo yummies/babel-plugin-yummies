@@ -128,7 +128,7 @@ export default class {
         }
 
         const out = {
-            method: required.opts.raw ? 'yummifyChainRaw' : 'yummifyChain',
+            method: required.opts.raw ? '_yummifyChainRaw' : '_yummifyChain',
             items: this.filterPaths(pathsToCheck)
         };
 
