@@ -3,7 +3,7 @@ import ProcessRequire from './processRequire';
 import ImportDeclaration from './ImportDeclaration';
 
 export default babel => {
-    const t = babel.types;
+    const types = babel.types;
 
     return new babel.Transformer('yummies', {
         ImportDeclaration(node, parent, scope, file) {
@@ -13,8 +13,8 @@ export default babel => {
                 if (importNode.declarations) {
                     importNode.declarations.forEach(declaration => {
                         if (
-                            t.isIdentifier(declaration.init.callee, { name: 'require' }) &&
-                            t.isLiteral(declaration.init.arguments[0]) &&
+                            types.isIdentifier(declaration.init.callee, { name: 'require' }) &&
+                            types.isLiteral(declaration.init.arguments[0]) &&
                             declaration.init.arguments[0].value.indexOf(config.prefix) === 0
                         ) {
                             const processRequire = new ProcessRequire(file.opts.filename, config);
@@ -22,27 +22,27 @@ export default babel => {
 
                             declaration.init.arguments[0].value = '@yummies/yummies/build/chain';
 
-                            declaration.init = t.callExpression(
-                                t.memberExpression(
+                            declaration.init = types.callExpression(
+                                types.memberExpression(
                                     declaration.init,
-                                    t.identifier(result.method),
+                                    types.identifier(result.method),
                                     false
                                 ),
                                 [
-                                    t.arrayExpression(
+                                    types.arrayExpression(
                                         result.items.map(item => {
-                                            return t.objectExpression([
-                                                t.property(
+                                            return types.objectExpression([
+                                                types.property(
                                                     'init',
-                                                    t.literal('type'),
-                                                    t.literal(item.type)
+                                                    types.literal('type'),
+                                                    types.literal(item.type)
                                                 ),
-                                                t.property(
+                                                types.property(
                                                     'init',
-                                                    t.literal('module'),
-                                                    t.callExpression(
-                                                        t.identifier('require'),
-                                                        [ t.literal(item.path) ]
+                                                    types.literal('module'),
+                                                    types.callExpression(
+                                                        types.identifier('require'),
+                                                        [ types.literal(item.path) ]
                                                     )
                                                 )
                                             ]);
