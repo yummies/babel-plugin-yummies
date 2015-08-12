@@ -1,36 +1,7 @@
-import { types } from 'babel';
-
-import config from './config';
-import ProcessRequire from './processRequire';
 import getImportDeclarations from './getImportDeclarations';
-
-function isHashImport(declaration) {
-    return types.isIdentifier(declaration.init.callee, { name: 'require' }) &&
-           types.isLiteral(declaration.init.arguments[0]) &&
-           declaration.init.arguments[0].value.indexOf(config.prefix) === 0;
-}
-
-function chainToAST(chain) {
-    return types.arrayExpression(
-        chain.map(item => {
-            return types.objectExpression([
-                types.property(
-                    'init',
-                    types.literal('type'),
-                    types.literal(item.type)
-                ),
-                types.property(
-                    'init',
-                    types.literal('module'),
-                    types.callExpression(
-                        types.identifier('require'),
-                        [ types.literal(item.path) ]
-                    )
-                )
-            ]);
-        })
-    );
-}
+import isHashImport from './isHashImport';
+import YummifyChain from './YummifyChain';
+import transformImportDeclaration from './transformImportDeclaration';
 
 export default function({ Plugin }) {
     return new Plugin('yummies', {
@@ -42,21 +13,10 @@ export default function({ Plugin }) {
                     if (importNode.declarations) {
                         importNode.declarations.forEach(declaration => {
                             if (isHashImport(declaration)) {
-                                const processRequire = new ProcessRequire(file.opts.filename, config);
-                                const result = processRequire.process(declaration.init.arguments[0].value);
+                                const yummifyChain = new YummifyChain(file.opts.filename);
+                                const result = yummifyChain.get(declaration.init.arguments[0].value);
 
-                                declaration.init.arguments[0].value = '@yummies/yummies/build/chain';
-
-                                declaration.init = types.callExpression(
-                                    types.memberExpression(
-                                        declaration.init,
-                                        types.identifier(result.method),
-                                        false
-                                    ),
-                                    [
-                                        chainToAST(result.items)
-                                    ]
-                                );
+                                transformImportDeclaration(declaration, result);
                             }
                         });
                     }
