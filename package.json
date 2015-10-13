@@ -17,32 +17,28 @@
   "dependencies": {
     "babel-runtime": "5.8.x",
     "loader-utils": "0.2.x",
-    "js-yaml": "3.3.x"
+    "js-yaml": "3.4.x"
   },
   "devDependencies": {
-    "husky": "0.9.x",
-    "mocha": "2.2.x",
-    "chai": "3.2.x",
-    "isparta": "3.0.x",
-    "coveralls": "2.11.x",
-    "eslint": "1.0.x",
-    "babel-eslint": "4.0.x",
-    "eslint-plugin-babel": "2.0.x",
+    "husky": "0.10.x",
+    "rimraf": "2.4.x",
+
+    "eslint": "1.6.x",
+    "babel-eslint": "4.1.x",
+    "eslint-plugin-babel": "2.1.x",
     "babel": "5.8.x",
-    "babel-core": "5.8.x",
-    "chokidar-cli": "1.0.x"
+    "babel-core": "5.8.x"
   },
   "scripts": {
-    "build": "rm -rf build/ && babel lib/ -d build/",
+    "prebuild": "rimraf build/",
+    "build": "babel lib/ -d build/",
     "dev": "npm run build -- -w",
-    "lint": "eslint --ext .es6 lib/ test/",
 
-    "coverage": "rm -rf coverage/ && isparta cover _mocha -i lib/*.es6",
-    "coverage-dev": "chokidar 'lib/*.es6' 'test/lib/*.es6' -c 'npm run coverage' --initial",
-    "test": "npm run lint && npm run coverage",
-    "travis": "npm run test && cat coverage/lcov.info | coveralls",
+    "lint": "eslint lib/",
+    "test": "npm run lint",
 
-    "prepush": "npm run test",
+    "travis": "npm run lint",
+    "prepush": "npm test",
     "prepublish": "npm run build"
   },
   "engines": {
