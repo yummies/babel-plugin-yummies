@@ -1,6 +1,4 @@
 {
-  "presets": [ "stage-1" ],
-  "plugins": [
-      "transform-runtime"
-  ]
+  "optional": "runtime",
+  "stage": 1
 }
