@@ -39,17 +39,17 @@ fs:
 └── src/
     ├── core-components/
     │   └── example/
-    │       └── index.es6
+    │       └── index.js
     └── my-components/
         └── example/
-            └── index.es6
+            └── index.js
 ```
 
 config:
 
 ```yaml
 files:
-  main: index.es6
+  main: index.js
 
 layers:
   - src/core-components/
@@ -68,11 +68,11 @@ result:
 var Example = require('yummies').yummify([
     {
         type: 'main',
-        module: require('./src/core-components/example/index.es6')
+        module: require('./src/core-components/example/index.js')
     },
     {
         type: 'main',
-        module: require('./src/my-components/example/index.es6')
+        module: require('./src/my-components/example/index.js')
     }
 ]);
 ```
@@ -86,11 +86,11 @@ fs:
 └── src/
     ├── core-components/
     │   └── example/
-    │       ├── index.es6
+    │       ├── index.js
     │       └── styles.less
     └── my-components/
         └── example/
-            ├── index.es6
+            ├── index.js
             └── styles.less
 ```
 
@@ -98,7 +98,7 @@ config:
 
 ```yaml
 files:
-  main: index.es6
+  main: index.js
   styles: styles.less
 
 layers:
@@ -118,7 +118,7 @@ result:
 var Example = require('yummies').yummify([
     {
         type: 'main',
-        module: require('./src/core-components/example/index.es6')
+        module: require('./src/core-components/example/index.js')
     },
     {
         type: 'styles',
@@ -126,7 +126,7 @@ var Example = require('yummies').yummify([
     },
     {
         type: 'main',
-        module: require('./src/my-components/example/index.es6')
+        module: require('./src/my-components/example/index.js')
     },
     {
         type: 'styles',
@@ -146,20 +146,20 @@ fs:
 └── src/
     ├── core-components/
     │   └── example/
-    │       ├── index.es6
-    │       └── prop-types.es6
+    │       ├── index.js
+    │       └── prop-types.js
     └── my-components/
         └── example/
-            ├── index.es6
-            └── prop-types.es6
+            ├── index.js
+            └── prop-types.js
 ```
 
 config:
 
 ```yaml
 files:
-  main: index.es6
-  propTypes: prop-types.es6
+  main: index.js
+  propTypes: prop-types.js
 
 layers:
   - src/core-components/
@@ -178,19 +178,19 @@ result:
 var Example = require('yummies').yummify([
     {
         type: 'main',
-        module: require('./src/core-components/example/index.es6')
+        module: require('./src/core-components/example/index.js')
     },
     {
         type: 'propTypes',
-        module: require('./src/core-components/example/prop-types.es6')
+        module: require('./src/core-components/example/prop-types.js')
     },
     {
         type: 'main',
-        module: require('./src/my-components/example/index.es6')
+        module: require('./src/my-components/example/index.js')
     },
     {
         type: 'propTypes',
-        module: require('./src/my-components/example/prop-types.es6')
+        module: require('./src/my-components/example/prop-types.js')
     }
 ]);
 ```
@@ -206,15 +206,15 @@ fs:
     │   └── example/
     │       ├── _type/
     │       │   └── test/
-    │       │       └── index.es6
-    │       ├── index.es6
+    │       │       └── index.js
+    │       ├── index.js
     │       └── styles.less
     └── my-components/
         └── example/
             ├── _type/
             │   └── test/
             │       └── styles.less
-            ├── index.es6
+            ├── index.js
             └── styles.less
 ```
 
@@ -222,7 +222,7 @@ config:
 
 ```yaml
 files:
-  main: index.es6
+  main: index.js
   styles: styles.less
 
 layers:
@@ -242,7 +242,7 @@ result:
 var ExampleTypeTest = require('yummies').yummify([
     {
         type: 'main',
-        module: require('./src/core-components/example/index.es6')
+        module: require('./src/core-components/example/index.js')
     },
     {
         type: 'styles',
@@ -250,7 +250,7 @@ var ExampleTypeTest = require('yummies').yummify([
     },
     {
         type: 'main',
-        module: require('./src/my-components/example/index.es6')
+        module: require('./src/my-components/example/index.js')
     },
     {
         type: 'styles',
@@ -258,7 +258,7 @@ var ExampleTypeTest = require('yummies').yummify([
     },
     {
         type: 'main',
-          module: require('./src/core-components/example/_type/test/index.es6')
+          module: require('./src/core-components/example/_type/test/index.js')
     },
     {
         type: 'styles',

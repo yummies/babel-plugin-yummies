@@ -31,7 +31,7 @@
     "build": "rm -rf build/ && babel lib/ -d build/",
     "dev": "npm run build -- -w",
 
-    "lint": "eslint --ext .es6 lib/",
+    "lint": "eslint lib/",
     "test": "npm run lint",
     "travis": "npm run test",
 
