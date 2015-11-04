@@ -1,6 +1,6 @@
 {
   "name": "@yummies/babel-plugin-yummies",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Multilayer components inheritance for Yummies via Babel plugin",
   "keywords": [ "yummies", "babel", "babel-plugin" ],
   "homepage": "https://github.com/yummies/babel-plugin-yummies",
