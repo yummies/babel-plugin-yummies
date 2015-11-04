@@ -15,6 +15,7 @@
     "LICENSE"
   ],
   "dependencies": {
+    "@yummies/yummies": "0.13.x",
     "babel-runtime": "5.8.x",
     "loader-utils": "0.2.x",
     "js-yaml": "3.4.x"
